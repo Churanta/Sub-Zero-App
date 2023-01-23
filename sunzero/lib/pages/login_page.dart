@@ -58,7 +58,7 @@ class LoginPage extends StatelessWidget {
                 //password textfield
                 MyTextField(
                   controller: passwordController,
-                  hintText: 'password',
+                  hintText: 'password/otp',
                   obscureText: true,
                 ),
 
@@ -73,8 +73,7 @@ class LoginPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => const MainPage()),
+                      MaterialPageRoute(builder: (context) => const MainPage()),
                     );
                   },
                   style: ElevatedButton.styleFrom(

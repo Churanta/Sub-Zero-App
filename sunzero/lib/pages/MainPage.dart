@@ -32,13 +32,14 @@ class _NavigationExampleState extends State<NavigationExample> {
         title: const Text('Sub-Zero'),
         centerTitle: true,
         actions: [
-          IconButton(onPressed: (){
-            Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>  LoginPage()),
-                    );
-          }, icon: const Icon(Icons.logout))
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginPage()),
+                );
+              },
+              icon: const Icon(Icons.logout))
         ],
         backgroundColor: Colors.blue[200],
       ),
@@ -47,7 +48,8 @@ class _NavigationExampleState extends State<NavigationExample> {
           setState(() {
             currentPageIndex = index;
           });
-        },animationDuration: const Duration(milliseconds: 1000),
+        },
+        animationDuration: const Duration(milliseconds: 1000),
         labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
         selectedIndex: currentPageIndex,
         destinations: const <Widget>[
@@ -56,11 +58,11 @@ class _NavigationExampleState extends State<NavigationExample> {
             icon: Icon(Icons.home_outlined),
             label: 'Home',
           ),
-          NavigationDestination(
-            selectedIcon: Icon(Icons.contact_page),
-            icon: Icon(Icons.contact_page_outlined),
-            label: 'Contact us',
-          ),
+          // NavigationDestination(
+          //   selectedIcon: Icon(Icons.contact_page),
+          //   icon: Icon(Icons.contact_page_outlined),
+          //   label: 'Contact us',
+          // ),
           NavigationDestination(
             selectedIcon: Icon(Icons.person),
             icon: Icon(Icons.person_outlined),
@@ -70,7 +72,7 @@ class _NavigationExampleState extends State<NavigationExample> {
       ),
       body: <Widget>[
         const UserProfile(),
-        const ContactUs(),
+        // const ContactUs(),
         const AboutUser()
       ][currentPageIndex],
     );

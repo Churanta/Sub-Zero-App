@@ -22,14 +22,20 @@ class _UserProfileState extends State<UserProfile> {
     return ListView.builder(
       itemCount: 10,
       itemBuilder: (_, index) {
-        return ListTile(
-          title: Text('Device number #$index'),
-          leading: const Icon(Icons.water),
-          trailing: const Icon(Icons.arrow_forward_ios),
-          onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => Remote(index)));
-          },
+        return Card(
+          color: Colors.blue[30],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+          ),
+          elevation: 2,
+          child: ListTile(
+              title: Text('Device number #$index'),
+              leading: const Icon(Icons.water),
+              trailing: const Icon(Icons.arrow_forward_ios),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Remote(index)));
+              }),
         );
       },
     );
