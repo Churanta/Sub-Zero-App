@@ -26,25 +26,39 @@ class _UserProfileState extends State<UserProfile> {
               ),
               itemBuilder: (BuildContext context, int index) {
                 return InkWell(
-                  onTap: () async {
-                    print('Item tapped: $index');
-                    // Show progress bar
-                    showDialog(
-                      context: context,
-                      barrierDismissible: false,
-                      builder: (context) {
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      },
-                    );
-                    // Wait for 3 seconds
-                    await Future.delayed(Duration(seconds: 3));
-                    // Dismiss progress bar and navigate to next page
-                    Navigator.pop(context);
+                  onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Remote(index)),
+                      MaterialPageRoute(
+                          builder: (context) => FutureBuilder(
+                                future: Future.delayed(Duration(seconds: 3)),
+                                builder: (context, snapshot) {
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.done) {
+                                    return Remote(index);
+                                  } else {
+                                    return Scaffold(
+                                      backgroundColor: Colors.white,
+                                      body: Center(
+                                        child: SizedBox(
+                                          height: double.infinity,
+                                          width: double.infinity,
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              CircularProgressIndicator(),
+                                              SizedBox(height: 10),
+                                              Text(
+                                                  "Connecting to the device...."),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                },
+                              )),
                     );
                   },
                   child: ClipRRect(
