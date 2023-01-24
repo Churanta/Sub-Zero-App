@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:sunzero/pages/details.dart';
+import 'package:sunzero/pages/wifi_page.dart';
 
 class UserProfile extends StatefulWidget {
   const UserProfile({super.key});
@@ -18,7 +19,7 @@ class _UserProfileState extends State<UserProfile> {
             padding: const EdgeInsets.only(top: 16),
             child: GridView.builder(
               itemCount: 6,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2, // 2 columns
                 crossAxisSpacing: 8, // horizontal spacing
                 mainAxisSpacing: 8, // vertical spacing
@@ -46,7 +47,7 @@ class _UserProfileState extends State<UserProfile> {
                                           child: Column(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
-                                            children: [
+                                            children: const [
                                               CircularProgressIndicator(),
                                               SizedBox(height: 10),
                                               Text(
@@ -65,68 +66,74 @@ class _UserProfileState extends State<UserProfile> {
                     borderRadius: BorderRadius.circular(10),
                     child: Container(
                       color: Colors.blue[100 * (index + 1 % 9)],
-                      child: Center(child: Text('Item $index')),
+                      child: Center(
+                          child: Column(
+                        children: [
+                          const SizedBox(height: 7.0),
+                          Align(
+                            alignment: Alignment.topRight,
+                            child: IconButton(
+                              icon: Icon(Icons.more_vert),
+                              tooltip: 'Edit Device Name',
+                              color: Colors.black,
+                              onPressed: () {
+                                showDialog<String>(
+                                  context: context,
+                                  builder: (BuildContext context) =>
+                                      AlertDialog(
+                                    title: const Align(
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        'Enter New Device Name',
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    content: TextField(
+                                      decoration: InputDecoration(
+                                          labelText: 'Edit device name',
+                                          contentPadding:
+                                              const EdgeInsets.all(15),
+                                          border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(30))),
+                                      onChanged: (value) {
+                                        // do something
+                                      },
+                                    ),
+                                    actions: <Widget>[
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(context, 'Cancel'),
+                                        child: const Text('Cancel',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 18)),
+                                      ),
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(context, 'Cancel'),
+                                        child: const Text(
+                                          'OK',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 18),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                          Text('Device Name: $index \n Temp: 15'),
+                        ],
+                      )),
                     ),
                   ),
                 );
               },
             )));
   }
-
-  // ListView _buildListView(BuildContext context) {
-  //   return ListView.builder(
-  //     itemCount: 10,
-  //     itemBuilder: (_, index) {
-  //       return Card(
-  //         color: Colors.blue[30],
-  //         shape: RoundedRectangleBorder(
-  //           borderRadius: BorderRadius.circular(15.0),
-  //         ),
-  //         elevation: 2,
-  //         child: ListTile(
-  //             title: Text('Device number #$index'),
-  //             leading: const Icon(Icons.water),
-  //             trailing: const Icon(Icons.arrow_forward_ios),
-  //             onTap: () {
-  //               Navigator.push(context,
-  //                   MaterialPageRoute(builder: (context) => Remote(index)));
-  //             }),
-  //       );
-  //     },
-  //   );
-
-  // }
-  // ListView _buildListView(BuildContext context) {
-  //   return ListView.builder(
-  //     itemCount: 6,
-  //     itemBuilder: (BuildContext context, int index) {
-  //       return Wrap(
-  //         spacing: 8, // gap between adjacent chips
-  //         runSpacing: 4, // gap between lines
-  //         children: <Widget>[
-  //           Container(
-  //             width: MediaQuery.of(context).size.width / 2 - 12,
-  //             height: 150,
-  //             decoration: BoxDecoration(
-  //               color: Colors.blue[100 * (index % 9)],
-  //             ),
-  //             child: Center(child: Text('Item $index')),
-  //           ),
-  //           // Add other widgets here
-  //         ],
-  //       );
-  //     },
-  //   );
-  // }
 }
-
-
-
-
-// child: ClipRRect(
-//                     borderRadius: BorderRadius.circular(10),
-//                     child: Container(
-//                       color: Colors.blue[100 * (index + 1 % 9)],
-//                       child: Center(child: Text('Item $index')),
-//                     ),
-//                   ),

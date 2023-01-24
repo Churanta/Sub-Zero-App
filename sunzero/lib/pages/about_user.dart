@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
+
 class AboutUser extends StatefulWidget {
   const AboutUser({super.key});
 
@@ -94,6 +95,16 @@ class _AboutUserState extends State<AboutUser> {
               ],
             ),
           ),
+          const SizedBox(height: 5.0),
+
+          ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                  textStyle: TextStyle(fontSize: 15),
+                  // minimumSize: Size.fromHeight(75),
+                  shape: StadiumBorder()),
+              onPressed: () {},
+              child: Text('Update Password'))
         ],
       ),
     ));

@@ -29,7 +29,7 @@ class _NavigationExampleState extends State<NavigationExample> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sub-Zero'),
+        title: const Text('Heater-Controller'),
         centerTitle: true,
         actions: [
           IconButton(

@@ -1,79 +1,50 @@
-// page for chat
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutter_spinbox/material.dart';
 
 import 'MainPage.dart';
-import 'wifi_page.dart';
 
-class Remote extends StatefulWidget {
-  final int index;
-
-  Remote(this.index);
-
+class updateWiFi extends StatefulWidget {
   @override
-  State<Remote> createState() => _RemoteState();
+  State<updateWiFi> createState() => _updateWiFiState();
 }
 
-class _RemoteState extends State<Remote> {
+class _updateWiFiState extends State<updateWiFi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('Device Name : ${widget.index}')),
-        floatingActionButton: FloatingActionButton(
-          elevation: 10,
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) =>  updateWiFi()),
-            );
-
-            // Add your onPressed code here!
-          },
-          backgroundColor: Colors.blue[200],
-          child: const Icon(Icons.wifi),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
+        appBar: AppBar(title: const Text('Update Wifi Crediantial')),
         body: Center(
             child: Column(
           children: [
             const SizedBox(height: 50.0),
             const Text(
-              'Current Temperature :',
+              'Enter Wifi Details',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
-            const Text(
-              '15 \u00B0C',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-            ),
-            const SizedBox(height: 35.0),
-            const Text(
-              'Set Differentiate Temperature:',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(30),
-              child: SpinBox(
-                min: 5,
-                max: 10,
-                value: 7,
-                onChanged: (value) => print(value),
+            const SizedBox(height: 30.0),
+            Text('Enter SSID'),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 40, vertical: 5),
+              child: TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'SSID:',
+                ),
               ),
             ),
-            const SizedBox(height: 25.0),
-            const Text(
-              'Set Temperature:',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(30),
-              child: SpinBox(
-                min: 35,
-                max: 80,
-                value: 50,
-                onChanged: (value) => print(value),
+            const SizedBox(height: 30.0),
+            Text('Enter Password'),
+
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 40, vertical: 5),
+              child: TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Password:',
+                ),
               ),
             ),
+
             const SizedBox(height: 50.0),
             ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
@@ -82,11 +53,11 @@ class _RemoteState extends State<Remote> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50))),
               icon: const Icon(
-                Icons.power_settings_new,
+                Icons.key,
                 color: Colors.white,
                 size: 26.0,
               ),
-              label: const Text('On/Off'),
+              label: const Text('Update'),
               onPressed: () {
                 showDialog<String>(
                   context: context,
@@ -113,7 +84,7 @@ class _RemoteState extends State<Remote> {
                         onPressed: () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => MainPage())),
+                                builder: (context) => const MainPage())),
                         child: const Text('OK'),
                       ),
                     ],
