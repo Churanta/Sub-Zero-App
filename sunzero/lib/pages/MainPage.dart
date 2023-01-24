@@ -4,7 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:sunzero/pages/about_user.dart';
 import 'package:sunzero/pages/contact_us.dart';
 import 'package:sunzero/pages/login_page.dart';
-import 'package:sunzero/pages/user_profile.dart';
+import 'package:sunzero/pages/Dashboard.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -36,7 +36,7 @@ class _NavigationExampleState extends State<NavigationExample> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginPage()),
+                  MaterialPageRoute(builder: (context) => MyLogin()),
                 );
               },
               icon: const Icon(Icons.logout))

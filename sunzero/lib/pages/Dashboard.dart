@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:sunzero/pages/details.dart';
+import 'package:sunzero/pages/Chat_Page.dart';
 import 'package:sunzero/pages/wifi_page.dart';
 
 class UserProfile extends StatefulWidget {

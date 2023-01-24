@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:sunzero/pages/update_password.dart';
 
 
 class AboutUser extends StatefulWidget {
@@ -103,7 +104,12 @@ class _AboutUserState extends State<AboutUser> {
                   textStyle: TextStyle(fontSize: 15),
                   // minimumSize: Size.fromHeight(75),
                   shape: StadiumBorder()),
-              onPressed: () {},
+              onPressed: () {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => const MyPassword()),
+  );
+},
               child: Text('Update Password'))
         ],
       ),

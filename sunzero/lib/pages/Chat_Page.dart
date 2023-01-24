@@ -25,7 +25,7 @@ class _RemoteState extends State<Remote> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) =>  updateWiFi()),
+              MaterialPageRoute(builder: (context) => updateWiFi()),
             );
 
             // Add your onPressed code here!
@@ -57,6 +57,8 @@ class _RemoteState extends State<Remote> {
                 min: 5,
                 max: 10,
                 value: 7,
+                keyboardType: TextInputType.none,
+                readOnly: true,
                 onChanged: (value) => print(value),
               ),
             ),
@@ -71,6 +73,8 @@ class _RemoteState extends State<Remote> {
                 min: 35,
                 max: 80,
                 value: 50,
+                keyboardType: TextInputType.none,
+                readOnly: true,
                 onChanged: (value) => print(value),
               ),
             ),

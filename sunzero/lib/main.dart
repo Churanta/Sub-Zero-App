@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:sunzero/pages/MainPage.dart';
 import 'package:sunzero/pages/login_page.dart';
@@ -19,45 +21,73 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginPage(),
+      home: const SplashScreen(),
     );
   }
 }
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 5), () {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => LoginPage()));
+
+    Timer(const Duration(seconds: 5), () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const MyVerify()),
+      );
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[50],
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Image.asset(
-              'assets/images/p3.png',
-              width: 300,
-              height: 150,
-            )
-          ],
-        ),
-
-        // child: Text('Splash Screen'),
-      ),
+      body: Center(child: FutureBuilder(
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.hasError) {
+            return Text('Error: ${'assets/gif/splash.gif'}');
+          } else if (!snapshot.hasData) {
+            return CircularProgressIndicator();
+          }
+          try {
+            return Image.asset('assets/gif/splash.gif');
+          } catch (e) {
+            return Text('Error: $e');
+          }
+        },
+      )),
     );
   }
 }
 
+// class MySplashScreen extends StatefulWidget {
+//   @override
+//   _MySplashScreenState createState() => _MySplashScreenState();
+// }
+
+// class _MySplashScreenState extends State<MySplashScreen> {
+//   @override
+//   void initState() {
+//     super.initState();
+//     Timer(Duration(seconds: 5), () {
+//       Navigator.of(context).pushReplacement(
+//         MaterialPageRoute(builder: (_) => MyVerify()),
+//       );
+//     });
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       color: Colors.white,
+//       child: Image.asset('assets/gif/splash.gif'),
+//     );
+//   }
+// }
