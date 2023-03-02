@@ -49,7 +49,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: FutureBuilder(
+      body: Center(
+        child: FutureBuilder(
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasError) {
             return Text('Error: ${'assets/gif/splash.gif'}');

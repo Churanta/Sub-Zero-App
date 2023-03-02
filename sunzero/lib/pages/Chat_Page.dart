@@ -75,7 +75,10 @@ class _RemoteState extends State<Remote> {
                 value: 50,
                 keyboardType: TextInputType.none,
                 readOnly: true,
-                onChanged: (value) => print(value),
+                onChanged: (dynamic value){
+                  final temp={'temperature': value};
+                  print(temp);
+                } 
               ),
             ),
             const SizedBox(height: 50.0),
