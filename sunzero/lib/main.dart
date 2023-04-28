@@ -1,94 +1,44 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:sunzero/pages/MainPage.dart';
-import 'package:sunzero/pages/login_page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:pinput/pinput.dart';
+import 'package:login_register/Dashboard.dart';
+import 'package:login_register/MainPage.dart';
+import 'package:login_register/about_user.dart';
+import 'package:login_register/contact_us.dart';
+import 'package:login_register/email.dart';
+import 'package:login_register/login.dart';
+import 'package:login_register/providers/authProvider.dart';
+import 'package:login_register/splash.dart';
+import 'package:login_register/verify.dart';
+import 'package:login_register/password.dart';
+import 'package:login_register/wifi_page.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => UserProvider())],
+      child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const SplashScreen(),
+      initialRoute: 'splash',
+      // home: const SplashScreen(),
+      debugShowCheckedModeBanner: false,
+      routes: {
+        'email': (context) => const MyEmail(),
+        'verify': (context) => const MyVerify(),
+        'password': (context) => const MyPassword(),
+        'login': (context) => const MyLogin(),
+        'splash': (context) => const SplashScreen(),
+        'mainpage': (context) => const MainPage(),
+        'wifi': (context) => const UpdateWiFi(),
+        'about': (context) => const AboutUser(),
+        'contact': (context) => const ContactUs(),
+        'dashboard': (context) => const UserProfile(),
+      },
     );
   }
 }
-
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
-
-  @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-
-    Timer(const Duration(seconds: 5), () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const MyVerify()),
-      );
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: FutureBuilder(
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.hasError) {
-            return Text('Error: ${'assets/gif/splash.gif'}');
-          } else if (!snapshot.hasData) {
-            return CircularProgressIndicator();
-          }
-          try {
-            return Image.asset('assets/gif/splash.gif');
-          } catch (e) {
-            return Text('Error: $e');
-          }
-        },
-      )),
-    );
-  }
-}
-
-// class MySplashScreen extends StatefulWidget {
-//   @override
-//   _MySplashScreenState createState() => _MySplashScreenState();
-// }
-
-// class _MySplashScreenState extends State<MySplashScreen> {
-//   @override
-//   void initState() {
-//     super.initState();
-//     Timer(Duration(seconds: 5), () {
-//       Navigator.of(context).pushReplacement(
-//         MaterialPageRoute(builder: (_) => MyVerify()),
-//       );
-//     });
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       color: Colors.white,
-//       child: Image.asset('assets/gif/splash.gif'),
-//     );
-//   }
-// }
