@@ -156,7 +156,7 @@ class _UserProfileState extends State<UserProfile> {
                               ),
                             ),
                             Text(
-                              'Device Name: ${allDevices[index].dname} \n Temp: ${allDevices[index].temp}',
+                              'Device Name: ${allDevices[index].dname} \n Temp: ${allDevices[index].temp} \n Device Status: ${allDevices[index].dstate == "1" ? "ON" : "OFF"}',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Colors.white,

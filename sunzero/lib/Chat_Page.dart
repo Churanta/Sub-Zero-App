@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:login_register/MainPage.dart';
 import 'package:login_register/models/deviceModel.dart';
+import 'package:login_register/providers/authProvider.dart';
 import 'package:login_register/services/sendDevTemp.dart';
 import 'package:login_register/services/updateDevice.dart';
 import 'package:login_register/wifi_page.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_spinbox/material.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 import 'package:flutter_spinbox/flutter_spinbox.dart';
+import 'package:provider/provider.dart';
 
 const String mqttBroker = "hmqtt.thinkfinitylabs.com";
 const int mqttPort = 1883;
@@ -33,10 +35,12 @@ class _RemoteState extends State<Remote> {
   bool _isConnected = false;
   double dtemp = 5;
   double temp = 50;
+  bool dstate = false;
 
   @override
   void initState() {
     super.initState();
+    dstate = int.parse(widget.currDev.dstate ?? "0") == 1;
     _connectToMqttBroker();
   }
 
@@ -70,7 +74,8 @@ class _RemoteState extends State<Remote> {
 
   void _sendMessage() {
     if (_isConnected) {
-      final message = '{"temp":"$dtemp","dtemp":"$temp"}';
+      final message =
+          '{"temp":"$dtemp","dtemp":"$temp","device id": "${widget.currDev.deviceid}","user Id":"${context.read<UserProvider>().user.uid}","Device State":"${widget.currDev.dstate}"}';
       final builder = MqttClientPayloadBuilder();
       builder.addString(message);
       client.publishMessage(mqttTopic, MqttQos.atLeastOnce, builder.payload!);
@@ -139,10 +144,10 @@ class _RemoteState extends State<Remote> {
                 color: Colors.white,
                 size: 26.0,
               ),
-              label: const Text('On'),
+              label: Text(dstate == 1 ? "ON" : "OFF"),
               onPressed: () async {
-                if (await updateDevice(
-                    context, dtemp, temp, widget.currDev.deviceid ?? "")) {
+                if (await updateDevice(context, dtemp, temp,
+                    widget.currDev.deviceid ?? "", !dstate)) {
                   _sendMessage(); // Add this line to send message
                   showDialog<String>(
                     context: context,

@@ -5,8 +5,8 @@ import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import '../providers/authProvider.dart';
 
-Future<bool> updateDevice(
-    BuildContext context, double dt, double temp, String devId) async {
+Future<bool> updateDevice(BuildContext context, double dt, double temp,
+    String devId, bool dstate) async {
   try {
     var response = await http.post(
         Uri.parse("https://api.thinkfinitylabs.com/device_update"),
@@ -16,7 +16,7 @@ Future<bool> updateDevice(
           "email": context.read<UserProvider>().user.uemail,
           "uid": context.read<UserProvider>().user.uid,
           "deviceid": devId,
-          "dstate": 1,
+          "dstate": dstate ? 1 : 0,
           "dt": dt,
           "temp": temp,
           "delay_time": 5,
