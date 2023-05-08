@@ -75,9 +75,12 @@ class _RemoteState extends State<Remote> {
   void _sendMessage() {
     if (_isConnected) {
       final message =
-          '{"temp":"$dtemp","dtemp":"$temp","device id": "${widget.currDev.deviceid}","user Id":"${context.read<UserProvider>().user.uid}","Device State":"${widget.currDev.dstate}"}';
+          '{"dtemp":"$dtemp","temp":"$temp","device id": "${widget.currDev.deviceid}","user Id":"${context.read<UserProvider>().user.uid}","Device State":"${widget.currDev.dstate}"}';
       final builder = MqttClientPayloadBuilder();
       builder.addString(message);
+      print("///////////////////////////////////////");
+      print(dstate);
+      print("///////////////////////////////////////");
       client.publishMessage(mqttTopic, MqttQos.atLeastOnce, builder.payload!);
     }
   }
@@ -144,7 +147,7 @@ class _RemoteState extends State<Remote> {
                 color: Colors.white,
                 size: 26.0,
               ),
-              label: Text(dstate == 1 ? "ON" : "OFF"),
+              label: Text(dstate == false ? "ON" : "OFF"),
               onPressed: () async {
                 if (await updateDevice(context, dtemp, temp,
                     widget.currDev.deviceid ?? "", !dstate)) {
