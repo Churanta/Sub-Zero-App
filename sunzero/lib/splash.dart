@@ -36,3 +36,39 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 }
+
+
+
+class Logo extends StatefulWidget {
+  @override
+  _LogoState createState() => _LogoState();
+}
+
+class _LogoState extends State<Logo> {
+  @override
+  void initState() {
+    super.initState();
+    Timer(Duration(seconds: 1), () {
+      // After 3 seconds, navigate to the home screen.
+      Navigator.pushReplacementNamed(context, 'splash');
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Container(
+          width: 200, // set width to 200
+          height: 200, // set height to 200
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/p3.png'),
+              fit: BoxFit.contain,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

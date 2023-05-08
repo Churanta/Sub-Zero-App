@@ -13,6 +13,8 @@ class DeviceModel {
     temp = json['temp'];
   }
 
+  get status => null;
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['deviceid'] = this.deviceid;

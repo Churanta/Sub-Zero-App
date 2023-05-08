@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: 'splash',
+      initialRoute: 'logo',
       // home: const SplashScreen(),
       debugShowCheckedModeBanner: false,
       routes: {
@@ -38,6 +38,7 @@ class MyApp extends StatelessWidget {
         'about': (context) => const AboutUser(),
         'contact': (context) => const ContactUs(),
         'dashboard': (context) => const UserProfile(),
+        'logo': (context) =>  Logo(),
       },
     );
   }

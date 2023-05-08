@@ -17,7 +17,7 @@ const String mqttBroker = "hmqtt.thinkfinitylabs.com";
 const int mqttPort = 1883;
 const String mqttUsername = "hdevices";
 const String mqttPassword = "Test@123";
-const String mqttTopic = "testtopic/1";
+const String mqttTopic = "testtopic/";
 
 class Remote extends StatefulWidget {
   final int index;
@@ -81,7 +81,8 @@ class _RemoteState extends State<Remote> {
       print("///////////////////////////////////////");
       print(dstate);
       print("///////////////////////////////////////");
-      client.publishMessage(mqttTopic, MqttQos.atLeastOnce, builder.payload!);
+      client.publishMessage("testtopic/${widget.currDev.deviceid}",
+          MqttQos.atLeastOnce, builder.payload!);
     }
   }
 
