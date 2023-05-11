@@ -17,7 +17,7 @@ const String mqttBroker = "hmqtt.thinkfinitylabs.com";
 const int mqttPort = 1883;
 const String mqttUsername = "hdevices";
 const String mqttPassword = "Test@123";
-const String mqttTopic = "testtopic/";
+// const String mqttTopic = "testtopic/";
 
 class Remote extends StatefulWidget {
   final int index;
