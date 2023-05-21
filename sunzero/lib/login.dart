@@ -32,9 +32,9 @@ class _MyLoginState extends State<MyLogin> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                'assets/login.png',
-                width: 250,
-                height: 250,
+                'assets/p3.png',
+                width: 200,
+                height: 200,
               ),
               const SizedBox(
                 height: 25,

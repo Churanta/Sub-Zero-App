@@ -32,7 +32,7 @@ class _MyEmailState extends State<MyEmail> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                'assets/img1.png',
+                'assets/p3.png',
                 width: 150,
                 height: 150,
               ),
